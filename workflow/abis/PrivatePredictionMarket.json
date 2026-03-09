@@ -1,0 +1,124 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [{ "name": "_forwarder", "type": "address" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "createMarket",
+    "inputs": [
+      { "name": "question",     "type": "string"    },
+      { "name": "deadline",     "type": "uint256"   },
+      { "name": "participants", "type": "address[]" }
+    ],
+    "outputs": [{ "name": "marketId", "type": "uint256" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "commitBet",
+    "inputs": [
+      { "name": "marketId",       "type": "uint256" },
+      { "name": "commitmentHash", "type": "bytes32" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "requestSettlement",
+    "inputs": [{ "name": "marketId", "type": "uint256" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "onReport",
+    "inputs": [{ "name": "report", "type": "bytes" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revealBet",
+    "inputs": [
+      { "name": "marketId",   "type": "uint256" },
+      { "name": "prediction", "type": "uint8"   },
+      { "name": "salt",       "type": "bytes32" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "finalizeRevealPhase",
+    "inputs": [{ "name": "marketId", "type": "uint256" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claim",
+    "inputs": [{ "name": "marketId", "type": "uint256" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getMarket",
+    "inputs": [{ "name": "marketId", "type": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "components": [
+          { "name": "question",       "type": "string"  },
+          { "name": "deadline",       "type": "uint256" },
+          { "name": "revealDeadline", "type": "uint256" },
+          { "name": "state",          "type": "uint8"   },
+          { "name": "outcome",        "type": "uint8"   },
+          { "name": "totalStake",     "type": "uint256" },
+          { "name": "yesPool",        "type": "uint256" },
+          { "name": "noPool",         "type": "uint256" },
+          { "name": "finalized",      "type": "bool"    }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "MarketCreated",
+    "inputs": [
+      { "name": "marketId", "type": "uint256", "indexed": true },
+      { "name": "question", "type": "string",  "indexed": false },
+      { "name": "deadline", "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "SettlementRequested",
+    "inputs": [
+      { "name": "marketId", "type": "uint256", "indexed": true },
+      { "name": "question", "type": "string",  "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "MarketSettled",
+    "inputs": [
+      { "name": "marketId", "type": "uint256", "indexed": true },
+      { "name": "outcome",  "type": "uint8",   "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "WinningsClaimed",
+    "inputs": [
+      { "name": "marketId", "type": "uint256", "indexed": true },
+      { "name": "winner",   "type": "address", "indexed": true },
+      { "name": "amount",   "type": "uint256", "indexed": false }
+    ]
+  }
+]
